@@ -12,6 +12,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<form action="">
+		<c:forEach items="${categoryList }" var="category">
+			<input type="checkbox" class="form-check-input" 
+			       name="category" value="${category.categoryId }"
+			       id="category${category.categoryId }">
+			       
+			<label class="form-check-label" for="category${category.categoryId }">
+				${category.categoryName }
+			</label>
+		</c:forEach>
+		
+		<br />
+		
+		<input type="submit" value="조회"/>
+	</form>
+
 	<!-- table.table>thead>tr>th*4^^tbody -->
 	<table class="table">
 		<thead>

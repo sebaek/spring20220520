@@ -13,4 +13,16 @@
 	     ON p.CategoryID = c.CategoryID
 	
 	</select>
+	
+	<select id="selectCategory" resultType="com.choong.spr.domain.ex01.Category">
+	SELECT CategoryID,
+	       CategoryName,
+	       Description
+	FROM Categories
+	ORDER BY 1	
+	</select>
 </mapper>
+
+
+
+

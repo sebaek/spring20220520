@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.choong.spr.domain.ex01.Category;
 import com.choong.spr.domain.ex01.Products;
 import com.choong.spr.mapper.ex01.Ex01Mapper;
 
@@ -19,7 +20,22 @@ public class Ex01Controller {
 	
 	@RequestMapping("sub01")
 	public void listProducts(Model model) {
+		
+		List<Category> categoryList = mapper.selectCategory();
 		List<Products> list = mapper.selectProducts();
+		
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("list", list);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
