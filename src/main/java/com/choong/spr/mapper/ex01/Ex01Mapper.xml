@@ -41,7 +41,7 @@
 	FROM Products p 
 	     JOIN Categories c 
 	     ON p.CategoryID = c.CategoryID
-	WHERE p.Price > #{price }
+	WHERE p.Price < #{price }
 	
 	</select>
 </mapper>
