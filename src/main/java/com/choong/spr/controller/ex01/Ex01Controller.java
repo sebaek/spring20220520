@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.choong.spr.domain.ex01.Category;
 import com.choong.spr.domain.ex01.Products;
@@ -19,10 +20,13 @@ public class Ex01Controller {
 	private Ex01Mapper mapper;
 	
 	@RequestMapping("sub01")
-	public void listProducts(Model model) {
+	public void listProducts(@RequestParam(name = "category", required = false) List<Integer> category,
+			                 Model model) {
+		
+		System.out.println(category);
 		
 		List<Category> categoryList = mapper.selectCategory();
-		List<Products> list = mapper.selectProducts();
+		List<Products> list = mapper.selectProducts(category);
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("list", list);

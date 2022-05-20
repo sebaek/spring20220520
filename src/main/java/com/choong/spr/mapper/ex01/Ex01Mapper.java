@@ -7,7 +7,7 @@ import com.choong.spr.domain.ex01.Products;
 
 public interface Ex01Mapper {
 
-	List<Products> selectProducts();
+	List<Products> selectProducts(List<Integer> category);
 
 	List<Category> selectCategory();
 

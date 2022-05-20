@@ -12,6 +12,17 @@
 	     JOIN Categories c 
 	     ON p.CategoryID = c.CategoryID
 	
+	<if test="list != null and list.size() > 0">
+		WHERE c.CategoryID IN (
+		
+			<foreach collection="list" item="item" separator=", ">
+				#{item}
+			</foreach>
+		
+		)
+	
+	</if>
+	
 	</select>
 	
 	<select id="selectCategory" resultType="com.choong.spr.domain.ex01.Category">
