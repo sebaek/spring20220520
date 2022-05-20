@@ -1,5 +1,12 @@
 package com.choong.spr.domain.ex01;
 
-public class Products {
+import lombok.Data;
 
+@Data
+public class Products {
+    
+    private String categoryName;
+	private String productName;
+	private String unit;
+	private String price;
 }
