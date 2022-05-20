@@ -17,6 +17,23 @@
           <a class="nav-link ${current == 'insert' ? 'active' : '' }" href="${insertUrl }">글쓰기</a>
         </li>
       </ul>
+      
+      <!-- form.d-flex>input.form-control.me-2[type=search]+button.btn.btn-outline-success -->
+      <form action="" class="d-flex">
+      	<input type="search" class="form-control me-2" />
+      	<button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
     </div>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
