@@ -19,8 +19,9 @@
       </ul>
       
       <!-- form.d-flex>input.form-control.me-2[type=search]+button.btn.btn-outline-success -->
-      <form action="" class="d-flex">
-      	<input type="search" class="form-control me-2" />
+      
+      <form action="${listUrl }" class="d-flex">
+      	<input type="search" class="form-control me-2" name="keyword"/>
       	<button class="btn btn-outline-success"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
