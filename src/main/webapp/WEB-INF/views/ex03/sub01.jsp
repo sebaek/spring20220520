@@ -136,9 +136,23 @@
 				$.ajax({
 					url : "/spr2/ex03/sub13",
 					type : "get",
-					success : function(data) {
+					success : function(lotto) {
 						// console.log(data);
-						$("#result1").text(data);
+						$("#result1").text(lotto);
+					}
+				});
+			});
+			
+			$("#button16").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub14",
+					type : "get",
+					success : function(book) {
+						//console.log(book);
+						//console.log(book.title);
+						//console.log(book.writer);
+						$("#result2").text(book.title);
+						$("#result3").text(book.writer);
 					}
 				});
 			});
@@ -228,6 +242,10 @@
 	
 	<button id="button15">로또번호 받기</button>
 	<p>받은 번호 : <span id="result1"></span></p>
+	
+	<button id="button16">json 데이터 받기</button>
+	<p>책 제목 : <span id="result2"></span></p>
+	<p>책 저자 : <span id="result3"></span></p>
 </body>
 </html>
 

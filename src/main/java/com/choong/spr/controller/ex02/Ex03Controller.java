@@ -104,6 +104,16 @@ public class Ex03Controller {
 	public Integer method13() {
 		return (int) (Math.random() * 45 + 1);
 	}
+	
+	@GetMapping("sub14")
+	public Book method14() {
+		Book b = new Book();
+		b.setTitle("스프링");
+		b.setWriter("홍길동");
+		
+		return b; 
+		
+	}
 }
 
 
