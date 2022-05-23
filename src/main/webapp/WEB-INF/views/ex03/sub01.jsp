@@ -20,7 +20,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<button id="button1">ajax 요청 보내기</button>
+	<button id="button1">ajax 요청 보내기</button> <br />
+	
+	<%-- 이 버튼을 클릭하면 /spr2/ex03/sub04 로 ajax 요청 보내기 --%>
+	<%-- 콘트롤러에도 해당경로 요청에 일하는 메소드 추가 --%>
+	<button id="button2">ajax 요청 보내기2</button>
 </body>
 </html>
 
