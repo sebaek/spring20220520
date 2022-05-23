@@ -57,7 +57,29 @@
 						writer : "son"
 					}
 				});
-			})
+			});
+			
+			$("#button8").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub10",
+					type : "post",
+					data : {
+						name : "son",
+						address : "london"
+					}
+				});
+			});
+			
+			$("#button9").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub11",
+					type : "post",
+					data : {
+						title : "득점왕 되기",
+						writer : "son"
+					}
+				});
+			});
 		});
 		
 	</script>
@@ -102,6 +124,10 @@
 	<%-- /spr2/ex03/sub10 post방식으로 데이터 보내기 --%>
 	<%-- 전송될 데이터는 name, address --%>
 	<button id="button8">post방식으로 데이터 보내기</button>
+	
+	<%-- /spr2/ex03/sub11 post방식으로 데이터 보내기 --%>
+	<%-- 전송될 데이터는 title, writer --%>
+	<button id="button9">post방식으로 데이터 보내기2</button>
 </body>
 </html>
 

@@ -79,6 +79,20 @@ public class Ex03Controller {
 		
 		return null;
 	}
+	
+	@PostMapping("sub10")
+	public String method10(String name, String address) {
+		System.out.println("name:" + name);
+		System.out.println("address:" + address);
+		return null;
+	}
+	
+	@PostMapping("sub11")
+	public String method11(Book book) {
+		System.out.println(book);
+		
+		return book.toString();
+	}
 }
 
 
