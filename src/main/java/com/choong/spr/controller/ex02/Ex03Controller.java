@@ -1,5 +1,7 @@
 package com.choong.spr.controller.ex02;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +39,18 @@ public class Ex03Controller {
 		System.out.println("ex03/sub04 일함@@");
 		
 		return "hello";
+	}
+	
+	@GetMapping("sub05")
+	public String method05() {
+		System.out.println("ex03/sub05 get 방식 일함###");
+		return null;
+	}
+	
+	@PostMapping("sub06")
+	public String method06() {
+		System.out.println("ex03/sub06 post 방식 일함$$$$$");
+		return null;
 	}
 }
 

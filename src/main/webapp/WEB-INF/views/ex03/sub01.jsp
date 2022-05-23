@@ -26,6 +26,13 @@
 					type : "get"
 				});
 			});
+			
+			$("#button4").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub06",
+					method : "post" // type과 같은 일
+				});
+			})
 		});
 		
 	</script>
