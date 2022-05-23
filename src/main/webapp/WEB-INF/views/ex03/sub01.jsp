@@ -88,6 +88,26 @@
 					data : "name=donald&address=newyork"
 				});
 			});
+			
+			$("#button11").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub11",
+					type : "post",
+					data : "title=득점왕 되기&writer=son"
+				});
+			});
+			
+			$("#button12").click(function(e) {
+				e.preventDefault();
+				
+				const dataString = $("#form1").serialize();
+				
+				$.ajax({
+					url : "/spr2/ex03/sub10",
+					type : "post",
+					data : dataString
+				});
+			});
 		});
 		
 	</script>
@@ -144,6 +164,15 @@
 	<%-- /spr2/ex03/sub11 post방식으로 데이터 보내기 --%>
 	<%-- 전송될 데이터는 title, writer --%>
 	<button id="button11">post방식으로 데이터 보내기2 (encoded string)</button>
+	
+	<hr />
+	
+	<p>폼 데이터 보내기</p>
+	<form action="/spr2/ex03/sub10" id="form1" method="post">
+		name : <input type="text" name="name" /> <br />
+		address : <input type="text" name="address" /> <br />
+		<input id="button12" type="submit" value="전송" />
+	</form>
 </body>
 </html>
 
