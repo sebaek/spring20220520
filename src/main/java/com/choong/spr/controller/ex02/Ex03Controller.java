@@ -69,6 +69,16 @@ public class Ex03Controller {
 		
 		return null;
 	}
+	
+	@GetMapping("sub09")
+	public String method09(String title, String writer) {
+		System.out.println("##받은 데이터 ");
+		System.out.println("title:" + title);
+		System.out.println("writer:" + writer);
+		
+		
+		return null;
+	}
 }
 
 

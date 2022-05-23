@@ -47,6 +47,17 @@
 					type : "put"
 				});
 			});
+			
+			$("#button7").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub09",
+					type : "get", // type의 기본값은 get이므로 생략가능
+					data : {
+						title : "epl",
+						writer : "son"
+					}
+				});
+			})
 		});
 		
 	</script>
@@ -80,6 +91,17 @@
 	<button id="button6">put 방식 요청 보내기</button>
 	
 	
+	<hr />
+	<p>서버로 데이터 보내기</p>
+	
+	<%-- /spr2/ex03/sub09 get방식으로 데이터 보내기 --%>
+	<button id="button7">get방식으로 데이터 보내기</button>
+	
+	<br />
+	
+	<%-- /spr2/ex03/sub10 post방식으로 데이터 보내기 --%>
+	<%-- 전송될 데이터는 name, address --%>
+	<button id="button8">post방식으로 데이터 보내기</button>
 </body>
 </html>
 
