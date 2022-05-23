@@ -131,6 +131,17 @@
 					}
 				});
 			});
+			
+			$("#button15").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub13",
+					type : "get",
+					success : function(data) {
+						// console.log(data);
+						$("#result1").text(data);
+					}
+				});
+			});
 		});
 		
 	</script>
@@ -211,6 +222,12 @@
 	
 	<%-- url : /spr2/ex03/sub12, type : post,  --%>
 	<button id="button14">응답처리1</button>
+	
+	<br />
+	
+	
+	<button id="button15">로또번호 받기</button>
+	<p>받은 번호 : <span id="result1"></span></p>
 </body>
 </html>
 

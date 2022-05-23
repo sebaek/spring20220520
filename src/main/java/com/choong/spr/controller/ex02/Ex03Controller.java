@@ -99,6 +99,11 @@ public class Ex03Controller {
 		
 		return "hi";
 	}
+	
+	@GetMapping("sub13")
+	public Integer method13() {
+		return (int) (Math.random() * 45 + 1);
+	}
 }
 
 
