@@ -156,6 +156,15 @@
 					}
 				});
 			});
+			
+			$("#button17").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub15",
+					success : function(data) {
+						console.log(data);
+					}
+				});
+			});
 		});
 		
 	</script>
@@ -246,6 +255,9 @@
 	<button id="button16">json 데이터 받기</button>
 	<p>책 제목 : <span id="result2"></span></p>
 	<p>책 저자 : <span id="result3"></span></p>
+	
+	
+	<button id="button17">map to json </button>
 </body>
 </html>
 

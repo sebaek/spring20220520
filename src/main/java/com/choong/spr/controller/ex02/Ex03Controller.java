@@ -1,5 +1,8 @@
 package com.choong.spr.controller.ex02;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -113,6 +116,17 @@ public class Ex03Controller {
 		
 		return b; 
 		
+	}
+	
+	
+	@GetMapping("sub15")
+	public Map<String, String> method15() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "손흥민");
+		map.put("age", "30");
+		map.put("address", "london");
+		
+		return map;
 	}
 }
 
