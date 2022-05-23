@@ -92,6 +92,13 @@ public class Ex03Controller {
 		System.out.println(book);
 		
 	}
+	
+	@PostMapping("sub12")
+	public String method12() {
+		System.out.println("12번째 메소드 일함");
+		
+		return "hi";
+	}
 }
 
 

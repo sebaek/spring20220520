@@ -108,6 +108,29 @@
 					data : dataString
 				});
 			});
+			
+			$("#button13").click(function(e) {
+				e.preventDefault();
+				
+				const data = $("#form2").serialize();
+				
+				$.ajax({
+					url : "/spr2/ex03/sub11",
+					type : "post",
+					data : data
+				});
+			});
+			
+			$("#button14").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub12",
+					type : "post",
+					success : function(data) {
+						console.log("요청 성공!!!! ");
+						console.log("받은 데이터", data);
+					}
+				});
+			});
 		});
 		
 	</script>
@@ -173,6 +196,21 @@
 		address : <input type="text" name="address" /> <br />
 		<input id="button12" type="submit" value="전송" />
 	</form>
+	
+	<%-- #button13 이 클릭되면 --%>
+	<%-- /spr2/ex03/sub11 로 post 방식 ajax 요청 전송, (title, write 전송) --%>
+	<form id="form2">
+		title : <input type="text" name="title" /> <br />
+		writer : <input type="text" name="writer" /> <br />
+		<input type="submit" value="전송" id="button13"/>
+	</form>
+	
+	<hr />
+	
+	<p>응답 처리 하기 </p>
+	
+	<%-- url : /spr2/ex03/sub12, type : post,  --%>
+	<button id="button14">응답처리1</button>
 </body>
 </html>
 
