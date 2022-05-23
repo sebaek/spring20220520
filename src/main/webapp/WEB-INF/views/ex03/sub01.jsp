@@ -15,7 +15,19 @@
 			$("#button1").click(function() {
 				$.ajax({url : "/spr2/ex03/sub03"});
 			});
+			
+			$("#button2").click(function() {
+				$.ajax({url : "/spr2/ex03/sub04"});
+			});
+			
+			$("#button3").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub05", 
+					type : "get"
+				});
+			});
 		});
+		
 	</script>
 <title>Insert title here</title>
 </head>
@@ -25,6 +37,14 @@
 	<%-- 이 버튼을 클릭하면 /spr2/ex03/sub04 로 ajax 요청 보내기 --%>
 	<%-- 콘트롤러에도 해당경로 요청에 일하는 메소드 추가 --%>
 	<button id="button2">ajax 요청 보내기2</button>
+	
+	<br />
+	
+	<%-- /spr2/ex03/sub05 get 방식 요청 보내기 --%>
+	<button id="button3">get 방식 요청 보내기</button>
+	
+	<%-- /spr2/ex03/sub06 post 방식 요청 보내기 --%>
+	<button id="button4">post 방식 요청 보내기</button>
 </body>
 </html>
 

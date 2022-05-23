@@ -31,6 +31,13 @@ public class Ex03Controller {
 		
 		return "hello ajax";
 	}
+	
+	@RequestMapping("sub04")
+	public String method04() {
+		System.out.println("ex03/sub04 일함@@");
+		
+		return "hello";
+	}
 }
 
 
