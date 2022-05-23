@@ -1,7 +1,9 @@
 package com.choong.spr.controller.ex02;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +52,21 @@ public class Ex03Controller {
 	@PostMapping("sub06")
 	public String method06() {
 		System.out.println("ex03/sub06 post 방식 일함$$$$$");
+		return null;
+	}
+	
+//	@RequestMapping(method = RequestMethod.DELETE, value = "sub07")
+	@DeleteMapping("sub07")
+	public String method07() {
+		System.out.println("ex03/sub07 delete 방식 일함!!!");
+		
+		return null;
+	}
+	
+	@PutMapping("sub08")
+	public String method08() {
+		System.out.println("ex03/sub08 put 방식 일함@@@@");
+		
 		return null;
 	}
 }
