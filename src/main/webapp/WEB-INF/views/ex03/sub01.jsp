@@ -52,6 +52,14 @@
 	
 	<%-- /spr2/ex03/sub06 post 방식 요청 보내기 --%>
 	<button id="button4">post 방식 요청 보내기</button>
+	
+	<%-- /spr2/ex03/sub07 delete 방식 요청 보내기 --%>
+	<button id="button5">delete 방식 요청 보내기</button>
+	
+	<%-- /spr2/ex03/sub08 put 방식 요청 보내기 --%>
+	<button id="button6">put 방식 요청 보내기</button>
+	
+	
 </body>
 </html>
 
