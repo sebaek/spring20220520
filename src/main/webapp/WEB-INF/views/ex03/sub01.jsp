@@ -80,6 +80,14 @@
 					}
 				});
 			});
+			
+			$("#button10").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub10",
+					type : "post",
+					data : "name=donald&address=newyork"
+				});
+			});
 		});
 		
 	</script>
@@ -128,6 +136,14 @@
 	<%-- /spr2/ex03/sub11 post방식으로 데이터 보내기 --%>
 	<%-- 전송될 데이터는 title, writer --%>
 	<button id="button9">post방식으로 데이터 보내기2</button>
+	
+	<%-- /spr2/ex03/sub10 post방식으로 데이터 보내기 --%>
+	<%-- 전송될 데이터는 name, address --%>
+	<button id="button10">post방식으로 데이터 보내기 (encoded string)</button>
+	
+	<%-- /spr2/ex03/sub11 post방식으로 데이터 보내기 --%>
+	<%-- 전송될 데이터는 title, writer --%>
+	<button id="button11">post방식으로 데이터 보내기2 (encoded string)</button>
 </body>
 </html>
 

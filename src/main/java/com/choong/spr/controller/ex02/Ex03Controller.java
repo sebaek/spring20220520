@@ -88,10 +88,9 @@ public class Ex03Controller {
 	}
 	
 	@PostMapping("sub11")
-	public String method11(Book book) {
+	public void method11(Book book) {
 		System.out.println(book);
 		
-		return book.toString();
 	}
 }
 
