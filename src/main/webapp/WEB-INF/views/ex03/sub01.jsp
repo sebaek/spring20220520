@@ -191,6 +191,19 @@
 					}
 				});
 			});
+			
+			$("#button20").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub17",
+					success : function(data) {
+						console.log("받은 데이터:", data);
+					},
+					error : function() {
+						console.log("무엇인가 잘못됨!!");
+					}
+					
+				});
+			});
 		});
 		
 	</script>
@@ -302,6 +315,9 @@
 	
 	<button id="button19">잘못된 요청2</button>
 	<p class="error" id="message19"></p>
+	
+	<button id="button20">서버에서 에러 응답</button>
+	
 </body>
 </html>
 
