@@ -141,6 +141,8 @@
 								type : "delete",
 								success : function() {
 									console.log(replyId + "댓글 삭제됨");
+									// 댓글 list refresh
+									
 								},
 								error : function() {
 									console.log(replyId + "댓글 삭제 중 문제 발생됨");

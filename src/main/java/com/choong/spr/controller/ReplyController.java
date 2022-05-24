@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,16 +50,16 @@ public class ReplyController {
 		return "redirect:/board/get";
 	}
 	
-	@PostMapping("delete")
-	public String delete(ReplyDto dto, RedirectAttributes rttr) {
-		boolean success = service.deleteReply(dto);
+	@DeleteMapping("delete/{id}")
+	@ResponseBody
+	public ResponseEntity<String> delete(@PathVariable("id") int id) {
+		boolean success = service.deleteReply(id);
 		
 		if (success) {
-			rttr.addFlashAttribute("messag", "댓글이 삭제되었습니다.");
+			return ResponseEntity.ok("댓글을 삭제 하였습니다.");
+		} else {
+			return ResponseEntity.status(500).body("");
 		}
-		
-		rttr.addAttribute("id", dto.getBoardId());
-		return "redirect:/board/get";
 	}
 	
 	@GetMapping("list")
