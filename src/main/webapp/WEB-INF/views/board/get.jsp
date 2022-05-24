@@ -129,13 +129,14 @@
 							type : "put",
 							data : JSON.stringify(data),
 							contentType : "application/json",
-							success : function() {
+							success : function(data) {
 								console.log("수정 성공");
 								
 								// 메세지 보여주기
+								$("#replyMessage1").show().text(data).fadeOut(3000);
 								
 								// 댓글 refresh
-								
+								listReply();
 							},
 							error : function() {
 								console.log("수정 실패");
