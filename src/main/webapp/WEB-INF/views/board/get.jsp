@@ -85,8 +85,44 @@
 				
 				const replyListElement = $("#replyList1");
 				for (let i = 0; i < list.length; i++) {
-					const replyElement = $("<li />");
-					replyElement.html(`\${list[i].content}`);
+					const replyElement = $("<li class='list-group-item' />");
+					replyElement.html(`
+							
+							<div id="replyDisplayContainer\${list[i].id }">
+								<div class="fw-bold">
+									<i class="fa-solid fa-comment"></i>
+									\${list[i].prettyInserted}
+									<span class="reply-edit-toggle-button badge bg-info text-dark"
+										id="replyEditToggleButton\${list[i].id }"
+										data-reply-id="\${list[i].id }">
+										<i class="fa-solid fa-pen-to-square"></i>
+									</span>
+									<span class="reply-delete-button badge bg-danger"
+										data-reply-id="\${list[i].id }">
+										<i class="fa-solid fa-trash-can"></i>
+									</span>
+								</div>
+								\${list[i].content }
+
+
+							</div>
+
+							<div id="replyEditFormContainer\${list[i].id }"
+								style="display: none;">
+								<form action="${appRoot }/reply/modify" method="post">
+									<div class="input-group">
+										<input type="hidden" name="boardId" value="${board.id }" />
+										<input type="hidden" name="id" value="\${list[i].id }" />
+										<input class="form-control" value="\${list[i].content }"
+											type="text" name="content" required />
+										<button class="btn btn-outline-secondary">
+											<i class="fa-solid fa-comment-dots"></i>
+										</button>
+									</div>
+								</form>
+							</div>
+							
+							`);
 					replyListElement.append(replyElement);
 				}
 			},
