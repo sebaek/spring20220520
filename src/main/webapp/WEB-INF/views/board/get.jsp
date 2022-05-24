@@ -80,7 +80,15 @@
 			type : "get",
 			data : data,
 			success : function(list) {
-				console.log("댓글 가져 오기 성공");
+				// console.log("댓글 가져 오기 성공");
+				console.log(list);
+				
+				const replyListElement = $("#replyList1");
+				for (let i = 0; i < list.length; i++) {
+					const replyElement = $("<li />");
+					replyElement.text(list[i].content);
+					replyListElement.append(replyElement);
+				}
 			},
 			error : function() {
 				console.log("댓글 가져오기 실패");
