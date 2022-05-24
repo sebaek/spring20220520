@@ -146,6 +146,7 @@
 					$("#replyMessage1").show().text(data).fadeOut(3000);
 					
 					// text input 초기화 
+					$("#insertReplyContentInput1").val("");
 					
 					// 모든 댓글 가져오는 ajax 요청 
 					console.log(data);
@@ -218,7 +219,7 @@
 				<form id="insertReplyForm1">
 					<div class="input-group">
 						<input type="hidden" name="boardId" value="${board.id }" />
-						<input class="form-control" type="text" name="content" required />
+						<input id="insertReplyContentInput1" class="form-control" type="text" name="content" required />
 						<button id="addReplySubmitButton1" class="btn btn-outline-secondary">
 							<i class="fa-solid fa-comment-dots"></i>
 						</button>
