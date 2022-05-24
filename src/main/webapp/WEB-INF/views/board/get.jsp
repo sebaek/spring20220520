@@ -142,6 +142,12 @@
 				type : "post",
 				data : data,
 				success : function(data) {
+					// 새 댓글 등록되었다는 메시지 출력
+					$("#replyMessage1").show().text(data).fadeOut(3000);
+					
+					// text input 초기화 
+					
+					// 모든 댓글 가져오는 ajax 요청 
 					console.log(data);
 				},
 				error : function() {
@@ -219,6 +225,9 @@
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="row">
+			<div class="alert alert-primary" style="display:none; " id="replyMessage1"></div>
 		</div>
 	</div>
 
