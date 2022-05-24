@@ -61,16 +61,7 @@
 			$(editFormId).show();
 		});
 
-		// reply-delete-button 클릭시
-		$(".reply-delete-button").click(function() {
-			const replyId = $(this).attr("data-reply-id");
-			const message = "댓글을 삭제하시겠습니까?";
-
-			if (confirm(message)) {
-				$("#replyDeleteInput1").val(replyId);
-				$("#replyDeleteForm1").submit();
-			}
-		});
+		
 		
 		
 		
@@ -132,7 +123,34 @@
 								
 								`);
 						replyListElement.append(replyElement);
-					}
+						
+					} // end of for
+					
+					// 삭제 버튼 클릭 이벤트 메소드 등록
+					// reply-delete-button 클릭시
+					$(".reply-delete-button").click(function() {
+						const replyId = $(this).attr("data-reply-id");
+						const message = "댓글을 삭제하시겠습니까?";
+
+						if (confirm(message)) {
+							// $("#replyDeleteInput1").val(replyId);
+							// $("#replyDeleteForm1").submit();
+							
+							$.ajax({
+								url : "${appRoot}/reply/delete/" + replyId,
+								type : "delete",
+								success : function() {
+									console.log(replyId + "댓글 삭제됨");
+								},
+								error : function() {
+									console.log(replyId + "댓글 삭제 중 문제 발생됨");
+								},
+								complete : function() {
+									console.log(replyId + "댓글 삭제 요청 끝");
+								}
+							});
+						}
+					});
 				},
 				error : function() {
 					console.log("댓글 가져오기 실패");
