@@ -45,21 +45,6 @@
 
 		});
 
-		// reply-edit-toggle 버튼 클릭시 댓글 보여주는 div 숨기고,
-		// 수정 form 보여주기
-		$(".reply-edit-toggle-button").click(function() {
-			console.log("버튼클릭");
-			const replyId = $(this).attr("data-reply-id");
-			const displayDivId = "#replyDisplayContainer" + replyId;
-			const editFormId = "#replyEditFormContainer" + replyId;
-
-			console.log(replyId);
-			console.log(displayDivId);
-			console.log(editFormId);
-
-			$(displayDivId).hide();
-			$(editFormId).show();
-		});
 
 		
 		
@@ -114,7 +99,8 @@
 											<input type="hidden" name="id" value="\${list[i].id }" />
 											<input class="form-control" value="\${list[i].content }"
 												type="text" name="content" required />
-											<button class="btn btn-outline-secondary">
+											<button data-reply-id="\${list[i].id}" 
+											        class="reply-modify-submit btn btn-outline-secondary">
 												<i class="fa-solid fa-comment-dots"></i>
 											</button>
 										</div>
@@ -125,6 +111,51 @@
 						replyListElement.append(replyElement);
 						
 					} // end of for
+					
+					$(".reply-modify-submit").click(function(e) {
+						e.preventDefault();
+						
+						const id = $(this).attr("data-reply-id");
+						const formElem = $("#replyEditFormContainer" + id).find("form");
+						const data = formElem.serialize();
+						
+						$.ajax({
+							url : "${appRoot}/reply/modify",
+							type : "put",
+							data : data,
+							success : function() {
+								console.log("수정 성공");
+								
+								// 메세지 보여주기
+								
+								// 댓글 refresh
+								
+							},
+							error : function() {
+								console.log("수정 실패");
+							},
+							complete : function() {
+								console.log("수정 종료");
+							}
+						});
+					});
+					
+					// reply-edit-toggle 버튼 클릭시 댓글 보여주는 div 숨기고,
+					// 수정 form 보여주기
+					$(".reply-edit-toggle-button").click(function() {
+						console.log("버튼클릭");
+						const replyId = $(this).attr("data-reply-id");
+						const displayDivId = "#replyDisplayContainer" + replyId;
+						const editFormId = "#replyEditFormContainer" + replyId;
+
+						console.log(replyId);
+						console.log(displayDivId);
+						console.log(editFormId);
+
+						$(displayDivId).hide();
+						$(editFormId).show();
+					});
+
 					
 					// 삭제 버튼 클릭 이벤트 메소드 등록
 					// reply-delete-button 클릭시
