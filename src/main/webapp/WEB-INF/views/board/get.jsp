@@ -86,7 +86,7 @@
 				const replyListElement = $("#replyList1");
 				for (let i = 0; i < list.length; i++) {
 					const replyElement = $("<li />");
-					replyElement.text(list[i].content);
+					replyElement.html(`\${list[i].content}`);
 					replyListElement.append(replyElement);
 				}
 			},
