@@ -139,10 +139,12 @@
 							$.ajax({
 								url : "${appRoot}/reply/delete/" + replyId,
 								type : "delete",
-								success : function() {
-									console.log(replyId + "댓글 삭제됨");
+								success : function(data) {
+									// console.log(replyId + "댓글 삭제됨");
 									// 댓글 list refresh
-									
+									listReply();
+									// 메세지 출력
+									$("#replyMessage1").show().text(data).fadeOut(3000);
 								},
 								error : function() {
 									console.log(replyId + "댓글 삭제 중 문제 발생됨");

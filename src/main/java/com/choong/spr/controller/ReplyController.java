@@ -50,7 +50,7 @@ public class ReplyController {
 		return "redirect:/board/get";
 	}
 	
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping(path = "delete/{id}", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public ResponseEntity<String> delete(@PathVariable("id") int id) {
 		boolean success = service.deleteReply(id);
