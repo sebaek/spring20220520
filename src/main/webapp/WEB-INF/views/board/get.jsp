@@ -130,6 +130,28 @@
 				console.log("댓글 가져오기 실패");
 			}
 		});
+		
+		// addReplySubmitButton1 버튼 클릭시 ajax 댓글 추가 요청
+		$("#addReplySubmitButton1").click(function(e) {
+			e.preventDefault();
+			
+			const data = $("#insertReplyForm1").serialize();
+			
+			$.ajax({
+				url : "${appRoot }/reply/insert",
+				type : "post",
+				data : data,
+				success : function(data) {
+					console.log(data);
+				},
+				error : function() {
+					console.log("문제 발생");
+				},
+				complete : function() {
+					console.log("요청 완료");
+				}
+			});
+		});
 	});
 </script>
 
@@ -187,11 +209,11 @@
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col">
-				<form action="${appRoot }/reply/insert" method="post">
+				<form id="insertReplyForm1">
 					<div class="input-group">
 						<input type="hidden" name="boardId" value="${board.id }" />
 						<input class="form-control" type="text" name="content" required />
-						<button class="btn btn-outline-secondary">
+						<button id="addReplySubmitButton1" class="btn btn-outline-secondary">
 							<i class="fa-solid fa-comment-dots"></i>
 						</button>
 					</div>

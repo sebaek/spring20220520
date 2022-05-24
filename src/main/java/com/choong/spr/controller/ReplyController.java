@@ -3,6 +3,8 @@ package com.choong.spr.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,16 +23,17 @@ public class ReplyController {
 	private ReplyService service;
 
 	@PostMapping("insert")
-	public String insert(ReplyDto dto, RedirectAttributes rttr) {
+	@ResponseBody
+	public ResponseEntity<String> insert(ReplyDto dto) {
 
 		boolean success = service.insertReply(dto);
 
 		if (success) {
-			rttr.addFlashAttribute("message", "새 댓글이 등록되었습니다.");
+			return ResponseEntity.ok("새 댓글이 등록되었습니다.");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
 		}
 
-		rttr.addAttribute("id", dto.getBoardId());
-		return "redirect:/board/get";
 	}
 
 	@PostMapping("modify")
