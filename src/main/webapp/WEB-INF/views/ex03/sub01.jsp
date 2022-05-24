@@ -178,9 +178,29 @@
 					}
 				});
 			});
+			
+			$("#button19").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub16",
+					success : function(data) {
+						
+					},
+					error : function() {
+						$("#message19").show();
+						$("#message19").text("처리 중 오류 발생").fadeOut(3000);
+					}
+				});
+			});
 		});
 		
 	</script>
+	
+	<style>
+		.error {
+			background-color: red;
+			color : yellow;
+		}
+	</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -277,6 +297,11 @@
 	<p>요청이 실패할 경우</p>
 	
 	<button id="button18">잘못된 요청</button>
+	
+	<br />
+	
+	<button id="button19">잘못된 요청2</button>
+	<p class="error" id="message19"></p>
 </body>
 </html>
 
