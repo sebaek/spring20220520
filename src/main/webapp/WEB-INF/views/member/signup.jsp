@@ -15,6 +15,12 @@
 
 <script>
 	$(document).ready(function() {
+		// 중복,암호 확인 변수
+		let idOk = false;
+		let pwOk = false;
+		let emailOk = false;
+		let nickNameOk = false;
+		
 		// 아이디 중복 체크 버튼 클릭시
 		$("#checkIdButton1").click(function(e) {
 			e.preventDefault();
@@ -23,6 +29,7 @@
 			const data = {
 					id : $("#form1").find("[name=id]").val()
 			};
+			idOk = false;
 			$.ajax({
 				url : "${appRoot}/member/check",
 				type : "get",
@@ -31,6 +38,7 @@
 					switch (data) {
 					case "ok" :
 						$("#idMessage1").text("사용 가능한 아이디입니다.");
+						idOk = true;
 						break;
 					case "notOk" :
 						$("#idMessage1").text("사용 불가능한 아이디입니다.");
@@ -42,6 +50,7 @@
 				},
 				complete : function() {
 					$("#checkIdButton1").removeAttr("disabled");
+					enableSubmit();
 				}
 			});
 		});
@@ -54,7 +63,7 @@
 			const data = {
 				email : $("#form1").find("[name=email]").val()
 			};
-			
+			emailOk = false;
 			$.ajax({
 				url : "${appRoot}/member/check",
 				type : "get",
@@ -63,9 +72,11 @@
 					switch (data) {
 					case "ok" :
 						$("#emailMessage1").text("사용 가능한 이메일입니다.");
+						emailOk = true;
 						break;
 					case "notOk" :
 						$("#emailMessage1").text("사용 불가능한 이메일입니다.");
+						
 						break;
 					}
 				}, 
@@ -73,7 +84,8 @@
 					$("#emailMessage1").text("이메일 중복 확인 중 오류 발생, 다시 시도해 주세요.");
 				},
 				complete : function() {
-					$("#checkEmailButton1").removeAttr("disabled", "")
+					$("#checkEmailButton1").removeAttr("disabled", "");
+					enableSubmit();
 				}
 			});
 		});
@@ -87,6 +99,7 @@
 				nickName : $("#form1").find("[name=nickName]").val()
 			};
 			
+			nickNameOk = false;
 			$.ajax({
 				url : "${appRoot}/member/check",
 				type : "get",
@@ -95,6 +108,7 @@
 					switch (data) {
 					case "ok" :
 						$("#nickNameMessage1").text("사용 가능한 닉네임입니다.");
+						nickNameOk = true;
 						break;
 					case "notOk" :
 						$("#nickNameMessage1").text("사용 불가능한 닉네임입니다.");
@@ -105,7 +119,8 @@
 					$("#nickNameMessage1").text("닉네임 중복 확인 중 오류 발생, 다시 시도해 주세요.");
 				},
 				complete : function() {
-					$("#checkNickNameButton1").removeAttr("disabled", "")
+					$("#checkNickNameButton1").removeAttr("disabled", "");
+					enableSubmit();
 				}
 			});
 		});
@@ -115,12 +130,25 @@
 			const pw1 = $("#passwordInput1").val();
 			const pw2 = $("#passwordInput2").val();
 			
+			pwOk = false;
 			if (pw1 === pw2) {
 				$("#passwordMessage1").text("패스워드가 일치합니다.");
+				pwOk = true;
 			} else {
 				$("#passwordMessage1").text("패스워드가 일치하지 않습니다.");
 			}
+			
+			enableSubmit();
 		});
+		
+		// 회원가입 submit 버튼 활성화/비활성화 함수
+		const enableSubmit = function () {
+			if (idOk && pwOk && emailOk && nickNameOk) {
+				$("#submitButton1").removeAttr("disabled");
+			} else {
+				$("#submitButton1").attr("disabled", "");
+			}
+		}
 	});
 </script>
 </head>
@@ -149,7 +177,7 @@
 	<p id="nickNameMessage1"></p>
 	<br />
 	
-	<button disabled>회원가입</button>
+	<button id="submitButton1" disabled>회원가입</button>
 </form>
 
 
