@@ -8,4 +8,8 @@ public interface MemberMapper {
 
 	int countMemberId(String id);
 
+	int countMemberEmail(String email);
+
+	int countMemberNickName(String nickName);
+
 }

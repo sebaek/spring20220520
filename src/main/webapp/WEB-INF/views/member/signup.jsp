@@ -15,6 +15,7 @@
 
 <script>
 	$(document).ready(function() {
+		// 아이디 중복 체크 버튼 클릭시
 		$("#checkIdButton1").click(function(e) {
 			e.preventDefault();
 			
@@ -44,6 +45,70 @@
 				}
 			});
 		});
+		
+		// 이메일 중복 체크 버튼 클릭시
+		$("#checkEmailButton1").click(function(e) {
+			e.preventDefault();
+			$("#checkEmailButton1").attr("disabled", "");
+			
+			const data = {
+				email : $("#form1").find("[name=email]").val()
+			};
+			
+			$.ajax({
+				url : "${appRoot}/member/check",
+				type : "get",
+				data : data,
+				success : function(data) {
+					switch (data) {
+					case "ok" :
+						$("#emailMessage1").text("사용 가능한 이메일입니다.");
+						break;
+					case "notOk" :
+						$("#emailMessage1").text("사용 불가능한 이메일입니다.");
+						break;
+					}
+				}, 
+				error : function() {
+					$("#emailMessage1").text("이메일 중복 확인 중 오류 발생, 다시 시도해 주세요.");
+				},
+				complete : function() {
+					$("#checkEmailButton1").removeAttr("disabled", "")
+				}
+			});
+		});
+		
+		// 닉네임 중복 체크 버튼 클릭시
+		$("#checkNickNameButton1").click(function(e) {
+			e.preventDefault();
+			$("#checkNickNameButton1").attr("disabled", "");
+			
+			const data = {
+				nickName : $("#form1").find("[name=nickName]").val()
+			};
+			
+			$.ajax({
+				url : "${appRoot}/member/check",
+				type : "get",
+				data : data,
+				success : function(data) {
+					switch (data) {
+					case "ok" :
+						$("#nickNameMessage1").text("사용 가능한 닉네임입니다.");
+						break;
+					case "notOk" :
+						$("#nickNameMessage1").text("사용 불가능한 닉네임입니다.");
+						break;
+					}
+				}, 
+				error : function() {
+					$("#nickNameMessage1").text("닉네임 중복 확인 중 오류 발생, 다시 시도해 주세요.");
+				},
+				complete : function() {
+					$("#checkNickNameButton1").removeAttr("disabled", "")
+				}
+			});
+		});
 	});
 </script>
 </head>
@@ -58,8 +123,15 @@
 	<br />
 	
 	패스워드 : <input type="password" name="password" /> <br />
-	이메일 : <input type="email" name="email" /> <br />
-	닉네임 : <input type="text" name="nickName" /> <br />
+	이메일 : <input type="email" name="email" /> 
+	<button id="checkEmailButton1" type="button">이메일 중복 확인</button>
+	<p id="emailMessage1"></p>
+	
+	<br />
+	닉네임 : <input type="text" name="nickName" /> 
+	<button id="checkNickNameButton1" type="button">닉네임 중복 확인</button>
+	<p id="nickNameMessage1"></p>
+	<br />
 	
 	<button>회원가입</button>
 </form>

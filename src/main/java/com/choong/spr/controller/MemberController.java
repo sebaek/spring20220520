@@ -51,6 +51,32 @@ public class MemberController {
 			return "ok";
 		}
 	}
+	
+	@GetMapping(path = "check", params = "email")
+	@ResponseBody
+	public String emailCheck(String email) {
+		
+		boolean exist = service.hasMemberEmail(email);
+		
+		if (exist) {
+			return "notOk";
+		} else {
+			return "ok";
+		}
+	}
+	
+	@GetMapping(path = "check", params = "nickName")
+	@ResponseBody
+	public String nickNameCheck(String nickName) {
+		
+		boolean exist = service.hasMemberNickName(nickName);
+		
+		if (exist) {
+			return "notOk";
+		} else {
+			return "ok";
+		}
+	}
 }
 
 
