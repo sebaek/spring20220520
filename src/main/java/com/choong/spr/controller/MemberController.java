@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.choong.spr.domain.MemberDto;
 import com.choong.spr.service.MemberService;
@@ -29,13 +30,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("signup")
-	public void signupProcess(MemberDto member) {
+	public String signupProcess(MemberDto member, RedirectAttributes rttr) {
 		boolean success = service.addMember(member);
 		
 		if (success) {
-			
+			rttr.addFlashAttribute("message", "회원가입이 완료되었습니다.");
+			return "redirect:/board/list";
 		} else {
+			rttr.addFlashAttribute("message", "회원가입이 실패하였습니다.");
+			rttr.addFlashAttribute("member", member);
 			
+			return "redirect:/member/signup";
 		}
 	}
 	
