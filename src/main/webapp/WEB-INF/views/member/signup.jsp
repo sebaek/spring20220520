@@ -149,7 +149,7 @@
 	<p id="nickNameMessage1"></p>
 	<br />
 	
-	<button>회원가입</button>
+	<button disabled>회원가입</button>
 </form>
 
 
