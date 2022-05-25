@@ -26,11 +26,18 @@
 				url : "${appRoot}/member/check",
 				type : "get",
 				data : data,
-				success : function() {
-					
+				success : function(data) {
+					switch (data) {
+					case "ok" :
+						$("#idMessage1").text("사용 가능한 아이디입니다.");
+						break;
+					case "notOk" :
+						$("#idMessage1").text("사용 불가능한 아이디입니다.");
+						break;
+					}
 				},
 				error : function() {
-					
+					$("#idMessage1").text("중복 확인 중 문제 발생, 다시 시도해 주세요.");
 				},
 				complete : function() {
 					$("#checkIdButton1").removeAttr("disabled");
@@ -47,6 +54,7 @@
 <form id="form1" action="${appRoot }/member/signup" method="post">
 	아이디 : <input type="text" name="id" /> 
 	<button id="checkIdButton1" type="button">아이디 중복 확인</button>	
+	<p id="idMessage1"></p>
 	<br />
 	
 	패스워드 : <input type="password" name="password" /> <br />

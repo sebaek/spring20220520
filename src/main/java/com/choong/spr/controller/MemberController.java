@@ -46,9 +46,9 @@ public class MemberController {
 		boolean exist = service.hasMemberId(id);
 		
 		if (exist) {
-			
+			return "notOk";
 		} else {
-			
+			return "ok";
 		}
 	}
 }
