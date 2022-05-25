@@ -109,6 +109,18 @@
 				}
 			});
 		});
+		
+		// 패스워드 오타 확인
+		$("#passwordInput1, #passwordInput2").keyup(function() {
+			const pw1 = $("#passwordInput1").val();
+			const pw2 = $("#passwordInput2").val();
+			
+			if (pw1 === pw2) {
+				$("#passwordMessage1").text("패스워드가 일치합니다.");
+			} else {
+				$("#passwordMessage1").text("패스워드가 일치하지 않습니다.");
+			}
+		});
 	});
 </script>
 </head>
@@ -122,7 +134,11 @@
 	<p id="idMessage1"></p>
 	<br />
 	
-	패스워드 : <input type="password" name="password" /> <br />
+	패스워드 : <input id="passwordInput1" type="text" name="password" /> <br />
+	
+	패스워드확인 : <input id="passwordInput2" type="text" name="passwordConfirm" /> <br />
+	<p id="passwordMessage1"></p>
+	
 	이메일 : <input type="email" name="email" /> 
 	<button id="checkEmailButton1" type="button">이메일 중복 확인</button>
 	<p id="emailMessage1"></p>
