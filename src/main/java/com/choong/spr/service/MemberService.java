@@ -17,5 +17,15 @@ public class MemberService {
 		return mapper.insertMember(member) == 1;
 	}
 
+	public boolean hasMemberId(String id) {
+		return mapper.countMemberId(id) > 0;
+	}
+
 	
 }
+
+
+
+
+
+

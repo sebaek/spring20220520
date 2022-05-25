@@ -9,4 +9,10 @@
 		VALUES (#{id}, #{password}, #{email}, #{nickName})
 	
 	</insert>
+	
+	<select id="countMemberId" resultType="int">
+		SELECT COUNT(id) 
+		FROM Member 
+		WHERE id = #{id}
+	</select>
 </mapper>

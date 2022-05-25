@@ -12,13 +12,43 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <title>Insert title here</title>
+
+<script>
+	$(document).ready(function() {
+		$("#checkIdButton1").click(function(e) {
+			e.preventDefault();
+			
+			$(this).attr("disabled", "");
+			const data = {
+					id : $("#form1").find("[name=id]").val()
+			};
+			$.ajax({
+				url : "${appRoot}/member/check",
+				type : "get",
+				data : data,
+				success : function() {
+					
+				},
+				error : function() {
+					
+				},
+				complete : function() {
+					$("#checkIdButton1").removeAttr("disabled");
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 
 <my:navBar current="signup"></my:navBar>
 
-<form action="${appRoot }/member/signup" method="post">
-	아이디 : <input type="text" name="id" /> <br />
+<form id="form1" action="${appRoot }/member/signup" method="post">
+	아이디 : <input type="text" name="id" /> 
+	<button id="checkIdButton1" type="button">아이디 중복 확인</button>	
+	<br />
+	
 	패스워드 : <input type="password" name="password" /> <br />
 	이메일 : <input type="email" name="email" /> <br />
 	닉네임 : <input type="text" name="nickName" /> <br />

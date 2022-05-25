@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.choong.spr.domain.MemberDto;
 import com.choong.spr.service.MemberService;
@@ -32,6 +33,19 @@ public class MemberController {
 		boolean success = service.addMember(member);
 		
 		if (success) {
+			
+		} else {
+			
+		}
+	}
+	
+	@GetMapping(path = "check", params = "id")
+	@ResponseBody
+	public String idCheck(String id) {
+		
+		boolean exist = service.hasMemberId(id);
+		
+		if (exist) {
 			
 		} else {
 			

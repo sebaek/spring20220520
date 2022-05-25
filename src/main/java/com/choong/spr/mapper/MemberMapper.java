@@ -6,4 +6,6 @@ public interface MemberMapper {
 
 	int insertMember(MemberDto member);
 
+	int countMemberId(String id);
+
 }
