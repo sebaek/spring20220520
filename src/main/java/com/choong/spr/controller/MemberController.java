@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.choong.spr.domain.MemberDto;
+import com.choong.spr.service.MemberService;
 
 @Controller
 @RequestMapping("member")
