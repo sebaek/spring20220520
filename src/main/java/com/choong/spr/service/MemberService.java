@@ -36,6 +36,11 @@ public class MemberService {
 		return mapper.selectAllMember();
 	}
 
+	public MemberDto getMemberById(String id) {
+		// TODO Auto-generated method stub
+		return mapper.selectMemberById(id);
+	}
+
 	
 }
 

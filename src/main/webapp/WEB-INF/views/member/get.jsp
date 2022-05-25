@@ -14,37 +14,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<my:navBar current="memberList"></my:navBar>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>PW</th>
-			<th>EMAIL</th>
-			<th>NICK</th>
-			<th>가입일시</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${memberList }" var="member">
-			<tr>
-				<td>
-					<c:url value="/member/get" var="getMemberUrl">
-						<c:param name="id" value="${member.id }"></c:param>
-					</c:url>
-					<a href="${getMemberUrl }">
-						${member.id }
-					</a>
-				</td>
-				<td>${member.password }</td>
-				<td>${member.email }</td>
-				<td>${member.nickName }</td>
-				<td>${member.inserted }</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+	<my:navBar></my:navBar>
+	
+	<div>
+	아이디 : <input type="text" value="${member.id }" /> <br />
+	암호 : <input type="text" value="${member.password }" /> <br />
+	이메일 : <input type="email" value="${member.email }" /> <br />
+	닉네임 : <input type="text" value="${member.nickName }" /> <br />
+	가입일시 : <input type="datetime-local" value="${member.inserted }" /> <br />
+	</div>
 </body>
 </html>
 

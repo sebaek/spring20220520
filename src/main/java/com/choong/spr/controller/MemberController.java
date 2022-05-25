@@ -94,6 +94,13 @@ public class MemberController {
 		model.addAttribute("memberList", list);
 	}
 	
+	@GetMapping("get")
+	public void getMember(String id, Model model) {
+		MemberDto member = service.getMemberById(id);
+		
+		model.addAttribute("member", member);
+		
+	}
 }
 
 

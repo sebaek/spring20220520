@@ -16,6 +16,8 @@ public interface MemberMapper {
 
 	List<MemberDto> selectAllMember();
 
+	MemberDto selectMemberById(String id);
+
 }
 
 
