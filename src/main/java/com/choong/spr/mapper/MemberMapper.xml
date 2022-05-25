@@ -47,6 +47,11 @@
 		FROM   Member
 		WHERE id = #{id} 
 	</select>
+	
+	<delete id="deleteMemberById">
+		DELETE FROM Member
+		WHERE id = #{id}
+	</delete>
 </mapper>
 
 
