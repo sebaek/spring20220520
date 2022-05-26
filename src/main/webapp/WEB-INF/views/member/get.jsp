@@ -152,6 +152,19 @@
 
 		});
 		
+		// 수정 submit 버튼 ("modifySubmitButton2") 클릭 시
+		$("#modifySubmitButton2").click(function(e) {
+			e.preventDefault();
+			const form2 = $("#form2");
+			
+			// input 값 옮기기
+			form2.find("[name=password]").val($("#passwordInput1").val());
+			form2.find("[name=email]").val($("#emailInput1").val());
+			form2.find("[name=nickName]").val($("#nickNameInput1").val());
+			
+			// submit
+			form2.submit();
+		});
 	});
 </script>
 </head>
@@ -225,12 +238,15 @@
       <div class="modal-body">
 	      <form id="form2" action="${appRoot }/member/modify" method="post">
 	        <input type="hidden" value="${member.id }" name="id" />
-	        기존 암호 : <input type="text" name="password" />
+	        <input type="hidden" name="password" />
+	        <input type="hidden" name="email" />
+	        <input type="hidden" name="nickName" />
+	        기존 암호 : <input type="text" name="oldPassword" />
 	      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button form="form2" type="submit" class="btn btn-primary">수정</button>
+        <button id="modifySubmitButton2" form="form2" type="submit" class="btn btn-primary">수정</button>
       </div>
     </div>
   </div>
