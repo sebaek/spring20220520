@@ -12,6 +12,44 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <title>Insert title here</title>
+<script>
+	$(document).ready(function() {
+		// 이메일 input 요소에 text 변경시 이메일중복확인버튼 활성화
+		$("#emailInput1").keyup(function() {
+			$("#emailCheckButton1").removeAttr("disabled");
+		});
+		
+		// 이메일중복버튼 클릭시 ajax 요청 발생
+		$("#emailCheckButton1").click(function(e) {
+			// 기본 이벤트 진행 중지
+			e.preventDefault();
+			
+			const data = {email : $("#emailInput1").val()};
+			$.ajax({
+				url : "${appRoot}/member/check",
+				type : "get",
+				data : data,
+				success : function(data) {
+					switch(data) {
+					case "ok" :
+						$("#emailMessage1").text("사용 가능한 이메일입니다.");
+						break;
+					case "notOk" :
+						$("#emailMessage1").text("사용 불가능한 이메일입니다.");
+						break;
+					}
+				},
+				error : function() {
+					$("#emailMessage1").text("이메일 중복 확인 중 오류 발생, 다시 시도해주세요.");
+				},
+				complete : function() {
+					console.log("이메일 중복 확인 완료")
+				}
+			});
+		});
+		
+	});
+</script>
 </head>
 <body>
 	<my:navBar></my:navBar>
@@ -20,7 +58,9 @@
 	아이디 : <input type="text" value="${member.id }" readonly /> <br />
 	암호 : <input type="text" value="${member.password }"  /> <br />
 	암호확인 : <input type="text" value="${member.password }"  /> <br />
-	이메일 : <input type="email" value="${member.email }" /> <button disabled>이메일중복확인</button> <br />
+	이메일 : <input id="emailInput1" type="email" value="${member.email }" /> <button id="emailCheckButton1" disabled>이메일중복확인</button> <br />
+	<p id="emailMessage1"></p>
+	
 	닉네임 : <input type="text" value="${member.nickName }" /> <button disabled>닉네임중복확인</button> <br />
 	가입일시 : <input type="datetime-local" value="${member.inserted }" readonly /> <br />
 	</div>
