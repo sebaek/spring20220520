@@ -3,6 +3,7 @@ package com.choong.spr.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.choong.spr.domain.MemberDto;
@@ -13,9 +14,18 @@ public class MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	public boolean addMember(MemberDto member) {
 
+		// 평문암호를 암호화(encoding)
+		String encodedPassword = passwordEncoder.encode(member.getPassword());
+		
+		// 암호화된 암호를 다시 세팅
+		member.setPassword(encodedPassword);
+		
 		return mapper.insertMember(member) == 1;
 	}
 
