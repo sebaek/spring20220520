@@ -42,10 +42,13 @@
 			if (oldEmail === newEmail) {
 				$("#emailCheckButton1").attr("disabled", "");
 				$("#emailMessage1").text("");
+				emailCheck = true;
 			} else {
 				$("#emailCheckButton1").removeAttr("disabled");
+				emailCheck = false;
 			}
 			
+			enableModifyButton();
 		});
 		
 		// 닉네임 input 요소에 text 변경시 닉네임중복확인버튼 활성화
@@ -55,9 +58,13 @@
 			if (oldNickName === newNickName) {
 				$("#nickNameCheckButton1").attr("disabled", "");
 				$("#nickNameMessage1").text("");
+				nickNameCheck = true;
 			} else {
 				$("#nickNameCheckButton1").removeAttr("disabled");
+				nickNameCheck = false;
 			}
+			
+			enableModifyButton();
 			
 		});
 		
@@ -138,7 +145,7 @@
 				passwordCheck = true;
 			} else {
 				$("#passwordMessage1").text("패스워드가 일치하지 않습니다.");
-				passwordCheck = true;
+				passwordCheck = false;
 			}
 			
 			enableModifyButton();
