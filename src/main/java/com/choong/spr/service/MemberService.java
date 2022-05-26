@@ -54,7 +54,10 @@ public class MemberService {
 	public boolean removeMember(MemberDto dto) {
 		MemberDto member = mapper.selectMemberById(dto.getId());
 		
-		if (member.getPassword().equals(dto.getPassword())) {
+		String rawPW = dto.getPassword();
+		String encodedPW = member.getPassword();
+		
+		if (passwordEncoder.matches(rawPW, encodedPW)) {
 			return mapper.deleteMemberById(dto.getId()) == 1;
 		}
 		
@@ -65,8 +68,14 @@ public class MemberService {
 		// db에서 member 읽어서
 		MemberDto oldMember = mapper.selectMemberById(dto.getId());
 		
+		String encodedPW = oldMember.getPassword();
+		
 		// 기존password가 일치할 때만 계속 진행
-		if (oldMember.getPassword().equals(oldPassword)) {
+		if (passwordEncoder.matches(oldPassword, encodedPW)) {
+			
+			// 암호 인코딩
+			dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+			
 			return mapper.updateMember(dto) == 1;
 		}
 		
