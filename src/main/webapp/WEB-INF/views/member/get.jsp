@@ -187,12 +187,12 @@
 	 --%>
 	
 	<div>
-	<button id="modifySubmitButton1" disabled>수정</button>
+	<button id="modifySubmitButton1" data-bs-toggle="modal" data-bs-target="#modal2" disabled>수정</button>
 	<button data-bs-toggle="modal" data-bs-target="#modal1">삭제</button>
 	</div>
 	
 	
-	<!-- Modal -->
+	<!-- 탈퇴 암호 확인 Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -209,6 +209,28 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button form="form1" type="submit" class="btn btn-danger">탈퇴</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<!-- 수정(modify) 기존 암호 확인 Modal -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+	      <form id="form2" action="${appRoot }/member/modify" method="post">
+	        <input type="hidden" value="${member.id }" name="id" />
+	        기존 암호 : <input type="text" name="password" />
+	      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button form="form2" type="submit" class="btn btn-primary">수정</button>
       </div>
     </div>
   </div>
