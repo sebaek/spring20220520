@@ -16,6 +16,8 @@
 	$(document).ready(function() {
 		// 기존 이메일
 		const oldEmail = $("#emailInput1").val();
+		// 기존 닉네임
+		const oldNickName = $("#nickNameInput1").val();
 		
 		// 이메일 input 요소에 text 변경시 이메일중복확인버튼 활성화
 		$("#emailInput1").keyup(function() {
@@ -26,6 +28,19 @@
 				$("#emailMessage1").text("");
 			} else {
 				$("#emailCheckButton1").removeAttr("disabled");
+			}
+			
+		});
+		
+		// 닉네임 input 요소에 text 변경시 닉네임중복확인버튼 활성화
+		$("#nickNameInput1").keyup(function() {
+			const newNickName = $("#nickNameInput1").val();
+			
+			if (oldNickName === newNickName) {
+				$("#nickNameCheckButton1").attr("disabled", "");
+				$("#nickNameMessage1").text("");
+			} else {
+				$("#nickNameCheckButton1").removeAttr("disabled");
 			}
 			
 		});
@@ -59,6 +74,35 @@
 			});
 		});
 		
+		// 닉네임중복버튼 클릭시 ajax 요청 발생
+		$("#nickNameCheckButton1").click(function(e) {
+			// 기본 이벤트 진행 중지
+			e.preventDefault();
+			
+			const data = {nickName : $("#nickNameInput1").val()};
+			$.ajax({
+				url : "${appRoot}/member/check",
+				type : "get",
+				data : data,
+				success : function(data) {
+					switch(data) {
+					case "ok" :
+						$("#nickNameMessage1").text("사용 가능한 닉네임입니다.");
+						break;
+					case "notOk" :
+						$("#nickNameMessage1").text("사용 불가능한 닉네임입니다.");
+						break;
+					}
+				},
+				error : function() {
+					$("#nickNameMessage1").text("닉네임 중복 확인 중 오류 발생, 다시 시도해주세요.");
+				},
+				complete : function() {
+					console.log("닉네임 중복 확인 완료")
+				}
+			});
+		});
+		
 	});
 </script>
 </head>
@@ -69,10 +113,14 @@
 	아이디 : <input type="text" value="${member.id }" readonly /> <br />
 	암호 : <input type="text" value="${member.password }"  /> <br />
 	암호확인 : <input type="text" value="${member.password }"  /> <br />
-	이메일 : <input id="emailInput1" type="email" value="${member.email }" /> <button id="emailCheckButton1" disabled>이메일중복확인</button> <br />
+	이메일 : <input id="emailInput1" type="email" value="${member.email }" /> 
+	<button id="emailCheckButton1" disabled>이메일중복확인</button> <br />
 	<p id="emailMessage1"></p>
 	
-	닉네임 : <input type="text" value="${member.nickName }" /> <button disabled>닉네임중복확인</button> <br />
+	닉네임 : <input id="nickNameInput1" type="text" value="${member.nickName }" /> 
+	<button id="nickNameCheckButton1" disabled>닉네임중복확인</button> <br />
+	<p id="nickNameMessage1"></p>
+	
 	가입일시 : <input type="datetime-local" value="${member.inserted }" readonly /> <br />
 	</div>
 	
