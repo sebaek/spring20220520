@@ -14,10 +14,26 @@
 <title>Insert title here</title>
 <script>
 	$(document).ready(function() {
+		// 암호, 암호 확인 일치여부
+		let passwordCheck = true;
+		// 이메일 중복 확인 여부
+		let emailCheck = true;
+		// 닉네임 중복 확인 여부
+		let nickNameCheck = true;
+		
 		// 기존 이메일
 		const oldEmail = $("#emailInput1").val();
 		// 기존 닉네임
 		const oldNickName = $("#nickNameInput1").val();
+		
+		// 수정버튼(modifySubmitButton1) 활성화 함수
+		const enableModifyButton = function() {
+			if (passwordCheck && emailCheck && nickNameCheck) {
+				$("#modifySubmitButton1").removeAttr("disabled");
+			} else {
+				$("#modifySubmitButton1").attr("disabled", "");
+			}
+		};
 		
 		// 이메일 input 요소에 text 변경시 이메일중복확인버튼 활성화
 		$("#emailInput1").keyup(function() {
@@ -51,6 +67,8 @@
 			e.preventDefault();
 			
 			const data = {email : $("#emailInput1").val()};
+			
+			emailCheck = false;
 			$.ajax({
 				url : "${appRoot}/member/check",
 				type : "get",
@@ -59,9 +77,11 @@
 					switch(data) {
 					case "ok" :
 						$("#emailMessage1").text("사용 가능한 이메일입니다.");
+						emailCheck = true;
 						break;
 					case "notOk" :
 						$("#emailMessage1").text("사용 불가능한 이메일입니다.");
+						
 						break;
 					}
 				},
@@ -70,6 +90,7 @@
 				},
 				complete : function() {
 					console.log("이메일 중복 확인 완료")
+					enableModifyButton();
 				}
 			});
 		});
@@ -80,6 +101,8 @@
 			e.preventDefault();
 			
 			const data = {nickName : $("#nickNameInput1").val()};
+			
+			nickNameCheck = false; // 
 			$.ajax({
 				url : "${appRoot}/member/check",
 				type : "get",
@@ -88,6 +111,7 @@
 					switch(data) {
 					case "ok" :
 						$("#nickNameMessage1").text("사용 가능한 닉네임입니다.");
+						nickNameCheck = true;
 						break;
 					case "notOk" :
 						$("#nickNameMessage1").text("사용 불가능한 닉네임입니다.");
@@ -98,7 +122,8 @@
 					$("#nickNameMessage1").text("닉네임 중복 확인 중 오류 발생, 다시 시도해주세요.");
 				},
 				complete : function() {
-					console.log("닉네임 중복 확인 완료")
+					console.log("닉네임 중복 확인 완료");
+					enableModifyButton();
 				}
 			});
 		});
@@ -110,9 +135,14 @@
 			
 			if (pw1 === pw2) {
 				$("#passwordMessage1").text("패스워드가 일치합니다.");
+				passwordCheck = true;
 			} else {
 				$("#passwordMessage1").text("패스워드가 일치하지 않습니다.");
+				passwordCheck = true;
 			}
+			
+			enableModifyButton();
+
 		});
 		
 	});
@@ -150,7 +180,7 @@
 	 --%>
 	
 	<div>
-	<button disabled>수정</button>
+	<button id="modifySubmitButton1" disabled>수정</button>
 	<button data-bs-toggle="modal" data-bs-target="#modal1">삭제</button>
 	</div>
 	
