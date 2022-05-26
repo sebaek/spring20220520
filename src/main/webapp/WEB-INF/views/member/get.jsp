@@ -14,9 +14,20 @@
 <title>Insert title here</title>
 <script>
 	$(document).ready(function() {
+		// 기존 이메일
+		const oldEmail = $("#emailInput1").val();
+		
 		// 이메일 input 요소에 text 변경시 이메일중복확인버튼 활성화
 		$("#emailInput1").keyup(function() {
-			$("#emailCheckButton1").removeAttr("disabled");
+			const newEmail = $("#emailInput1").val();
+			
+			if (oldEmail === newEmail) {
+				$("#emailCheckButton1").attr("disabled", "");
+				$("#emailMessage1").text("");
+			} else {
+				$("#emailCheckButton1").removeAttr("disabled");
+			}
+			
 		});
 		
 		// 이메일중복버튼 클릭시 ajax 요청 발생
