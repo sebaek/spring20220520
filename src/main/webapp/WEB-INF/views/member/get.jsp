@@ -103,6 +103,18 @@
 			});
 		});
 		
+		// 암호, 암호확인 요소 값 변경시
+		$("#passwordInput1, #passwordInput2").keyup(function() {
+			const pw1 = $("#passwordInput1").val();
+			const pw2 = $("#passwordInput2").val();
+			
+			if (pw1 === pw2) {
+				$("#passwordMessage1").text("패스워드가 일치합니다.");
+			} else {
+				$("#passwordMessage1").text("패스워드가 일치하지 않습니다.");
+			}
+		});
+		
 	});
 </script>
 </head>
@@ -111,8 +123,10 @@
 	
 	<div>
 	아이디 : <input type="text" value="${member.id }" readonly /> <br />
-	암호 : <input type="text" value="${member.password }"  /> <br />
-	암호확인 : <input type="text" value="${member.password }"  /> <br />
+	암호 : <input id="passwordInput1" type="text" value="${member.password }"  /> <br />
+	암호확인 : <input id="passwordInput2" type="text" value="${member.password }"  /> <br />
+	<p id="passwordMessage1"></p>
+	
 	이메일 : <input id="emailInput1" type="email" value="${member.email }" /> 
 	<button id="emailCheckButton1" disabled>이메일중복확인</button> <br />
 	<p id="emailMessage1"></p>
