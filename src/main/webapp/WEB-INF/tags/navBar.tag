@@ -7,6 +7,7 @@
 <c:url value="/member/signup" var="signupUrl" ></c:url>
 <c:url value="/member/list" var="memberListUrl"></c:url>
 <c:url value="/login" var="loginUrl"></c:url>
+<c:url value="/logout" var="logoutUrl"></c:url>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-3">
   <div class="container">
@@ -40,7 +41,15 @@
         <li class="nav-item">
         	<a href="${loginUrl }" class="nav-link">로그인</a>
         </li>
+        
+        <li class="nav-item">
+        	<button class="nav-link" type="submit" form="form1">로그아웃</button>
+        </li>
       </ul>
+      
+      <div class="d-none">
+      	<form action="${logoutUrl }" id="form1" method="post"></form>
+      </div>
       
       <!-- form.d-flex>input.form-control.me-2[type=search]+button.btn.btn-outline-success -->
       

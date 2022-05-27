@@ -11,6 +11,7 @@
 	<security:http>
 		<security:csrf disabled="true"/>
 		<security:form-login default-target-url="/board/list" />
+		<security:logout />
 	</security:http>
 
 	<security:authentication-manager>
