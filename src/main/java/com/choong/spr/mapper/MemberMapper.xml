@@ -61,6 +61,13 @@
 		WHERE
 		    id = #{id}
 	</update>
+	
+	<!-- 권한 추가 -->
+	<insert id="insertAuth">
+		INSERT INTO Auth (memberId, role)
+		VALUES (#{id}, #{auth})
+	</insert>
+	
 </mapper>
 
 

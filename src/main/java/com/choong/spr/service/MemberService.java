@@ -26,7 +26,13 @@ public class MemberService {
 		// 암호화된 암호를 다시 세팅
 		member.setPassword(encodedPassword);
 		
-		return mapper.insertMember(member) == 1;
+		// insert member  
+		int cnt1 = mapper.insertMember(member);
+		
+		// insert auth
+		int cnt2 = mapper.insertAuth(member.getId(), "ROLE_USER");
+		
+		return cnt1 == 1 && cnt2 == 1;
 	}
 
 	public boolean hasMemberId(String id) {
