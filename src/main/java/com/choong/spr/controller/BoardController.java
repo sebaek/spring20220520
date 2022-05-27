@@ -1,8 +1,10 @@
 package com.choong.spr.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(BoardDto board, RedirectAttributes rttr) {
+	public String insert(BoardDto board, Principal principal, RedirectAttributes rttr) {
+		
+		board.setMemberId(principal.getName());
 		boolean success = service.insertBoard(board);
 		
 		if (success) {
