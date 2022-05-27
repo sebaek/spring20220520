@@ -7,7 +7,7 @@
 <c:url value="/board/insert" var="insertUrl"></c:url>
 <c:url value="/member/signup" var="signupUrl" ></c:url>
 <c:url value="/member/list" var="memberListUrl"></c:url>
-<c:url value="/login" var="loginUrl"></c:url>
+<c:url value="/member/login" var="loginUrl"></c:url>
 <c:url value="/logout" var="logoutUrl"></c:url>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-3">
