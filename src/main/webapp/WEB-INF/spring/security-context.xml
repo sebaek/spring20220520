@@ -12,6 +12,7 @@
 		<security:csrf disabled="true"/>
 		<security:form-login default-target-url="/board/list" />
 		<security:logout logout-success-url="/board/list" />
+		<security:remember-me/>
 		
 		<!-- access 속성 작성 법 (책 673~674) -->
 		<security:intercept-url pattern="/board/insert" access="isAuthenticated()"/>
