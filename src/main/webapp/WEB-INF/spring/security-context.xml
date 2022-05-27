@@ -10,7 +10,7 @@
 
 	<security:http>
 		<security:csrf disabled="true"/>
-		<security:form-login />
+		<security:form-login default-target-url="/board/list" />
 	</security:http>
 
 	<security:authentication-manager>
