@@ -10,7 +10,7 @@
 
 	<security:http>
 		<security:csrf disabled="true"/>
-		<security:form-login default-target-url="/board/list" />
+		<security:form-login login-page="/member/login" default-target-url="/board/list" />
 		<security:logout logout-success-url="/board/list" />
 		<security:remember-me/>
 		
