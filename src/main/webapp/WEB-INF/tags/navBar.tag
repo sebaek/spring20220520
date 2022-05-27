@@ -6,6 +6,7 @@
 <c:url value="/board/insert" var="insertUrl"></c:url>
 <c:url value="/member/signup" var="signupUrl" ></c:url>
 <c:url value="/member/list" var="memberListUrl"></c:url>
+<c:url value="/login" var="loginUrl"></c:url>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-3">
   <div class="container">
@@ -33,6 +34,11 @@
         
         <li class="nav-item">
         	<a href="${memberListUrl }" class="nav-link ${current == 'memberList' ? 'active' : '' }">회원목록</a>
+        </li>
+        
+        <!-- li.nav-item>a.nav-link{로그인} -->
+        <li class="nav-item">
+        	<a href="${loginUrl }" class="nav-link">로그인</a>
         </li>
       </ul>
       
