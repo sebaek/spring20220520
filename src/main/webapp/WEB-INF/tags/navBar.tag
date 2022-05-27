@@ -46,13 +46,18 @@
         </sec:authorize>
         
         <!-- li.nav-item>a.nav-link{로그인} -->
-        <li class="nav-item">
-        	<a href="${loginUrl }" class="nav-link">로그인</a>
-        </li>
         
-        <li class="nav-item">
-        	<button class="nav-link" type="submit" form="logoutForm1">로그아웃</button>
-        </li>
+        <sec:authorize access="not isAuthenticated()">
+	        <li class="nav-item">
+	        	<a href="${loginUrl }" class="nav-link">로그인</a>
+	        </li>
+        </sec:authorize>
+        
+        <sec:authorize access="isAuthenticated()">
+	        <li class="nav-item">
+	        	<button class="nav-link" type="submit" form="logoutForm1">로그아웃</button>
+	        </li>
+        </sec:authorize>
       </ul>
       
       <div class="d-none">
