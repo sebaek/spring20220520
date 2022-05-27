@@ -43,6 +43,7 @@
 		       b.body, 
 		       b.inserted, 
 		       COUNT(r.id) numOfReply, 
+		       m.id memberId,
 		       m.nickName writerNickName
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
 		                  JOIN Member m ON b.memberId = m.id
