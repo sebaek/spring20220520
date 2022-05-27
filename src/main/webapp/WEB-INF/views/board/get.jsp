@@ -270,6 +270,12 @@
 						<textarea class="form-control" name="body" id="textarea1"
 							cols="30" rows="10" readonly>${board.body }</textarea>
 					</div>
+					
+					<div>
+						<label for="input3" class="form-label">작성자</label>
+						<input id="input3" class="form-control" type="text"
+							value="${board.writerNickName }" readonly />
+					</div>
 
 					<div>
 						<label for="input2" class="form-label">작성일시</label>
