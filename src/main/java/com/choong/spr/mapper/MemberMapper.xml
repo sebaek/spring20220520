@@ -68,6 +68,11 @@
 		VALUES (#{id}, #{auth})
 	</insert>
 	
+	<delete id="deleteAuthById">
+		DELETE FROM Auth
+		WHERE memberId = #{id}
+	</delete>
+	
 </mapper>
 
 
