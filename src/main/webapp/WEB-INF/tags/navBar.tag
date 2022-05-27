@@ -39,9 +39,11 @@
         	<a href="${signupUrl }" class="nav-link ${current == 'signup' ? 'active' : '' }">회원가입</a>
         </li>
         
-        <li class="nav-item">
-        	<a href="${memberListUrl }" class="nav-link ${current == 'memberList' ? 'active' : '' }">회원목록</a>
-        </li>
+        <sec:authorize access="hasRole('ADMIN')">
+	        <li class="nav-item">
+	        	<a href="${memberListUrl }" class="nav-link ${current == 'memberList' ? 'active' : '' }">회원목록</a>
+	        </li>
+        </sec:authorize>
         
         <!-- li.nav-item>a.nav-link{로그인} -->
         <li class="nav-item">
@@ -49,12 +51,12 @@
         </li>
         
         <li class="nav-item">
-        	<button class="nav-link" type="submit" form="form1">로그아웃</button>
+        	<button class="nav-link" type="submit" form="logoutForm1">로그아웃</button>
         </li>
       </ul>
       
       <div class="d-none">
-      	<form action="${logoutUrl }" id="form1" method="post"></form>
+      	<form action="${logoutUrl }" id="logoutForm1" method="post"></form>
       </div>
       
       <!-- form.d-flex>input.form-control.me-2[type=search]+button.btn.btn-outline-success -->
