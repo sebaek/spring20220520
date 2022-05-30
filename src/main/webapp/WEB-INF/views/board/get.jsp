@@ -141,6 +141,7 @@
 								listReply();
 							},
 							error : function() {
+								$("#replyMessage1").show().text("댓글을 수정할 수 없습니다.").fadeOut(3000);
 								console.log("수정 실패");
 							},
 							complete : function() {

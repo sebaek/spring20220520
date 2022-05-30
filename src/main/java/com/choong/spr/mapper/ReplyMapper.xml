@@ -36,4 +36,25 @@
 	WHERE board_id = #{boardId}
 	</delete>
 	
+	<select id="selectReplyById" resultType="com.choong.spr.domain.ReplyDto">
+	SELECT id,
+	       board_id boardId,
+		   content,
+		   memberId,
+		   inserted
+	FROM Reply
+	WHERE id = #{id}
+		   
+		   
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+

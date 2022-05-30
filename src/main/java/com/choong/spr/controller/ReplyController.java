@@ -46,9 +46,10 @@ public class ReplyController {
 	}
 
 	@PutMapping(path = "modify", produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> modify(@RequestBody ReplyDto dto) {
-		System.out.println(dto);
-		boolean success = service.updateReply(dto);
+	public ResponseEntity<String> modify(@RequestBody ReplyDto dto, Principal principal) {
+
+		
+		boolean success = service.updateReply(dto, principal);
 
 		if (success) {
 			return ResponseEntity.ok("댓글이 변경되었습니다.");
