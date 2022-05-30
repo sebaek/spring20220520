@@ -59,8 +59,10 @@ public class ReplyController {
 	}
 	
 	@DeleteMapping(path = "delete/{id}", produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> delete(@PathVariable("id") int id) {
-		boolean success = service.deleteReply(id);
+	public ResponseEntity<String> delete(@PathVariable("id") int id, Principal principal) {
+		
+		
+		boolean success = service.deleteReply(id, principal);
 		
 		if (success) {
 			return ResponseEntity.ok("댓글을 삭제 하였습니다.");
