@@ -56,3 +56,17 @@ MODIFY COLUMN memberId VARCHAR(20) NOT NULL AFTER content;
 
 SELECT * FROM Reply ORDER BY 1 DESC;
 
+
+	SELECT r.id, 
+	       r.board_id boardId,
+	       r.content,
+	       m.nickName writerNickName,
+	       r.inserted,
+		   IF (m.id = 'user3', 'true', 'false') own
+	FROM Reply r JOIN Member m ON r.memberId = m.id
+	WHERE r.board_id = 15
+	ORDER BY r.id
+
+
+
+
