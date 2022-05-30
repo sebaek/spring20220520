@@ -188,6 +188,7 @@
 									$("#replyMessage1").show().text(data).fadeOut(3000);
 								},
 								error : function() {
+									$("#replyMessage1").show().text("댓글을 삭제할 수 없습니다.").fadeOut(3000);
 									console.log(replyId + "댓글 삭제 중 문제 발생됨");
 								},
 								complete : function() {
