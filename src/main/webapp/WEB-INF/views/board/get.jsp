@@ -88,7 +88,11 @@
 											<i class="fa-solid fa-trash-can"></i>
 										</span>
 									</div>
-									\${list[i].content }
+									<span class="badge bg-light text-dark">
+										<i class="fa-solid fa-user"></i>
+										\${list[i].writerNickName}
+									</span>
+									<span>\${list[i].content }<span>
 	
 	
 								</div>

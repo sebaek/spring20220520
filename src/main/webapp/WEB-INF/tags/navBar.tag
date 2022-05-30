@@ -10,7 +10,7 @@
 <c:url value="/member/login" var="loginUrl"></c:url>
 <c:url value="/logout" var="logoutUrl"></c:url>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
   <div class="container">
     <a class="navbar-brand" href="${listUrl }"><i class="fa-solid fa-house"></i></a>
     
