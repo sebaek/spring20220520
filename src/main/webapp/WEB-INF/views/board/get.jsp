@@ -92,7 +92,7 @@
 										<i class="fa-solid fa-user"></i>
 										\${list[i].writerNickName}
 									</span>
-									<span>\${list[i].content }<span>
+									<span id="replyContent\${list[i].id }"><span>
 	
 	
 								</div>
@@ -115,6 +115,7 @@
 								
 								`);
 						replyListElement.append(replyElement);
+						$("#replyContent" + list[i].id).text(list[i].content);
 						
 					} // end of for
 					
