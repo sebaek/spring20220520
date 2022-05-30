@@ -31,6 +31,9 @@ public class ReplyController {
 		if (principal == null) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		} else {
+			String memberId = principal.getName();
+			dto.setMemberId(memberId);
+			
 			boolean success = service.insertReply(dto);
 	
 			if (success) {
