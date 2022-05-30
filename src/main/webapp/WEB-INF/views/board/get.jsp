@@ -78,15 +78,12 @@
 									<div class="fw-bold">
 										<i class="fa-solid fa-comment"></i>
 										\${list[i].prettyInserted}
-										<span class="reply-edit-toggle-button badge bg-info text-dark"
-											id="replyEditToggleButton\${list[i].id }"
-											data-reply-id="\${list[i].id }">
-											<i class="fa-solid fa-pen-to-square"></i>
+										
+										<span id="modifyButtonWrapper\${list[i].id }">
 										</span>
-										<span class="reply-delete-button badge bg-danger"
-											data-reply-id="\${list[i].id }">
-											<i class="fa-solid fa-trash-can"></i>
-										</span>
+										
+
+										
 									</div>
 									<span class="badge bg-light text-dark">
 										<i class="fa-solid fa-user"></i>
@@ -116,6 +113,21 @@
 								`);
 						replyListElement.append(replyElement);
 						$("#replyContent" + list[i].id).text(list[i].content);
+						
+						// own이 true일 때만 수정,삭제 버튼 보이기
+						if (list[i].own) {
+							$("#modifyButtonWrapper" + list[i].id).html(`
+								<span class="reply-edit-toggle-button badge bg-info text-dark"
+									id="replyEditToggleButton\${list[i].id }"
+									data-reply-id="\${list[i].id }">
+									<i class="fa-solid fa-pen-to-square"></i>
+								</span>
+								<span class="reply-delete-button badge bg-danger"
+									data-reply-id="\${list[i].id }">
+									<i class="fa-solid fa-trash-can"></i>
+								</span>
+							`);
+						}
 						
 					} // end of for
 					
