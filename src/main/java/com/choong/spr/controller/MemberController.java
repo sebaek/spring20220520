@@ -174,6 +174,13 @@ public class MemberController {
 	public void initpwPage() {
 		
 	}
+	
+	@PostMapping("initpw")
+	public String initpwProcess(String id) {
+		service.initPassword(id);
+		
+		return "redirect:/board/list";
+	}
 }
 
 
