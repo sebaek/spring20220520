@@ -169,6 +169,11 @@ public class MemberController {
 	public void loginPage() {
 		
 	}
+	
+	@GetMapping("initpw")
+	public void initpwPage() {
+		
+	}
 }
 
 
