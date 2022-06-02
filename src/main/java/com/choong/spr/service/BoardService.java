@@ -55,17 +55,20 @@ public class BoardService {
 	}
 
 	@Transactional
-	public boolean insertBoard(BoardDto board, MultipartFile file) {
+	public boolean insertBoard(BoardDto board, MultipartFile[] files) {
 //		board.setInserted(LocalDateTime.now());
 		
 		// 게시글 등록
 		int cnt = mapper.insertBoard(board);
 		
 		// 파일 등록 
-		if (file.getSize() > 0) {
-			mapper.insertFile(board.getId(), file.getOriginalFilename());
-//			saveFile(board.getId(), file); // 파일 시스템에 저장
-			saveFileAwsS3(board.getId(), file); // s3에 업로드
+		if (files != null) {
+			for (MultipartFile file : files) {
+				if (file.getSize() > 0) {
+					mapper.insertFile(board.getId(), file.getOriginalFilename());
+					saveFileAwsS3(board.getId(), file); // s3에 업로드
+				}
+			}
 		}
 		
 		return cnt == 1; 
