@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.choong.spr.domain.BoardDto;
 import com.choong.spr.mapper.BoardMapper;
 import com.choong.spr.mapper.ReplyMapper;
+
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
 public class BoardService {
@@ -22,9 +30,19 @@ public class BoardService {
 	@Autowired
 	private ReplyMapper replyMapper;
 	
+	private S3Client s3;
+	
+	private String bucketName;
+	
 	public List<BoardDto> listBoard(String type, String keyword) {
 		// TODO Auto-generated method stub
 		return mapper.selectBoardAll(type, "%" + keyword + "%");
+	}
+	
+	@PostConstruct
+	public void init() {
+		Region region = Region.AP_NORTHEAST_2;
+		this.s3 = S3Client.builder().region(region).build();
 	}
 
 	@Transactional
@@ -37,10 +55,33 @@ public class BoardService {
 		// 파일 등록 
 		if (file.getSize() > 0) {
 			mapper.insertFile(board.getId(), file.getOriginalFilename());
-			saveFile(board.getId(), file);
+//			saveFile(board.getId(), file); // 파일 시스템에 저장
+			saveFileAwsS3(board.getId(), file); // s3에 업로드
 		}
 		
 		return cnt == 1; 
+	}
+
+	private void saveFileAwsS3(int id, MultipartFile file) {
+		String key = "board/" + id + "/" + file.getOriginalFilename();
+		
+		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+				.acl(ObjectCannedACL.PUBLIC_READ)
+				.bucket(bucketName)
+				.key(key)
+				.build();
+		
+		RequestBody requestBody;
+		try {
+			requestBody = RequestBody.fromInputStream(file.getInputStream(), file.getSize());
+			s3.putObject(putObjectRequest, requestBody);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		
 	}
 
 	private void saveFile(int id, MultipartFile file) {
