@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +33,7 @@ public class BoardService {
 	
 	private S3Client s3;
 	
+	@Value("${aws.s3.bucketName}")
 	private String bucketName;
 	
 	public List<BoardDto> listBoard(String type, String keyword) {
