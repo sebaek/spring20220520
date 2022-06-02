@@ -19,6 +19,7 @@ import com.choong.spr.mapper.ReplyMapper;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
@@ -120,17 +121,8 @@ public class BoardService {
 		// 파일 목록 읽기
 		String fileName = mapper.selectFileByBoardId(id);
 		
-		// 실제파일 삭제
-		if (fileName != null && !fileName.isEmpty()) {
-			String folder = "C:/imgtmp/board/" + id + "/";
-			String path = folder + fileName;
-			
-			File file = new File(path);
-			file.delete();
-			
-			File dir = new File(folder);
-			dir.delete();
-		}
+		// s3에서 지우기
+		deleteFromAwsS3(id, fileName);
 		
 		// 파일테이블 삭제
 		mapper.deleteFileByBoardId(id);
@@ -139,6 +131,17 @@ public class BoardService {
 		replyMapper.deleteByBoardId(id);
 		
 		return mapper.deleteBoard(id) == 1;
+	}
+
+	private void deleteFromAwsS3(int id, String fileName) {
+		String key = "board/" + id + "/" + fileName;
+		
+		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+				.bucket(bucketName)
+				.key(key)
+				.build();
+		
+		s3.deleteObject(deleteObjectRequest);
 	}
 
 }
