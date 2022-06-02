@@ -301,7 +301,7 @@
 					</div>
 					
 					<div>
-						<img src="file:///C:/imgtmp/board/${board.id }/${board.fileName }" alt="" />
+						<img src="https://prj0207.s3.ap-northeast-2.amazonaws.com/board/${board.id }/${board.fileName }" alt="" />
 					</div>
 					
 					<div>
