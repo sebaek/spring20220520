@@ -325,7 +325,7 @@
 					
 					<div id="addFileInputContainer1" class="d-none">
 						파일 추가 :
-						<input type="file" multiple="multiple" name="addFileList" />
+						<input type="file" accept="image/*" multiple="multiple" name="addFileList" />
 					</div>
 					
 					<div>

@@ -81,7 +81,7 @@ DESC File;
 SELECT * FROM File;
 SELECT * FROM Board ORDER BY 1 DESC;
 
-
+SELECT * FROM File WHERE boardId = 49;
 
 
 

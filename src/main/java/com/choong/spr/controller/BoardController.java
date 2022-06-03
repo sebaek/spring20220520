@@ -89,11 +89,13 @@ public class BoardController {
 	
 	@PostMapping("modify")
 	public String modify(BoardDto dto,
-			List<String> removeFileList,
+			@RequestParam(name = "removeFileList", required = false) ArrayList<String> removeFileList,
 			MultipartFile[] addFileList,
 			Principal principal, 
 			RedirectAttributes rttr) {
 		BoardDto oldBoard = service.getBoardById(dto.getId());
+		
+		System.out.println(removeFileList);
 		
 		if (oldBoard.getMemberId().equals(principal.getName())) {
 			boolean success = service.updateBoard(dto, removeFileList, addFileList);
