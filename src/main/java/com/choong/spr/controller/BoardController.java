@@ -95,8 +95,6 @@ public class BoardController {
 			RedirectAttributes rttr) {
 		BoardDto oldBoard = service.getBoardById(dto.getId());
 		
-		System.out.println(removeFileList);
-		
 		if (oldBoard.getMemberId().equals(principal.getName())) {
 			boolean success = service.updateBoard(dto, removeFileList, addFileList);
 			
