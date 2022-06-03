@@ -1,4 +1,3 @@
-<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -304,7 +303,7 @@
 					<c:forEach items="${board.fileName }" var="file">
 						<%
 						String file = (String) pageContext.getAttribute("file");
-						String encodedFileName = URLEncoder.encode(file, "utf-8");
+						String encodedFileName = java.net.URLEncoder.encode(file, "utf-8");
 						pageContext.setAttribute("encodedFileName", encodedFileName);
 						%>
 						<div>
