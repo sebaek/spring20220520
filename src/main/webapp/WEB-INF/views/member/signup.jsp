@@ -156,30 +156,58 @@
 
 <my:navBar current="signup"></my:navBar>
 
-<form id="form1" action="${appRoot }/member/signup" method="post">
-	아이디 : <input type="text" name="id" /> 
-	<button id="checkIdButton1" type="button">아이디 중복 확인</button>	
-	<p id="idMessage1"></p>
-	<br />
+	<div class="container">
 	
-	패스워드 : <input id="passwordInput1" type="text" name="password" /> <br />
-	
-	패스워드확인 : <input id="passwordInput2" type="text" name="passwordConfirm" /> <br />
-	<p id="passwordMessage1"></p>
-	
-	이메일 : <input type="email" name="email" /> 
-	<button id="checkEmailButton1" type="button">이메일 중복 확인</button>
-	<p id="emailMessage1"></p>
-	
-	<br />
-	닉네임 : <input type="text" name="nickName" /> 
-	<button id="checkNickNameButton1" type="button">닉네임 중복 확인</button>
-	<p id="nickNameMessage1"></p>
-	<br />
-	
-	<button id="submitButton1" disabled>회원가입</button>
-</form>
+		
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-6">
+				<h1>회원 가입 </h1>
 
+				<form id="form1" action="${appRoot }/member/signup" method="post">
+					<label for="idInput1" class="form-label">
+						아이디 
+					</label>
+					
+					<div class="input-group">
+						<input id="idInput1" class="form-control" type="text" name="id" /> 
+						<button class="btn btn-secondary" id="checkIdButton1" type="button">아이디 중복 확인</button>	
+					</div>
+					<div class="form-text" id="idMessage1"></div>
+
+					<label for="passwordInput1" class="form-label">
+					패스워드
+					</label>
+					<input class="form-control" id="passwordInput1" type="text" name="password" />
+					
+					<label for="passwordInput2" class="form-label">
+					패스워드확인
+					</label>
+					<input class="form-control" id="passwordInput2" type="text" name="passwordConfirm" />
+					<div class="form-text" id="passwordMessage1"></div>
+					
+					<label for="emailInput1" class="form-label">
+					이메일
+					</label>
+					<div class="input-group">
+						<input id="emailInput1" class="form-control" type="email" name="email" /> 
+						<button class="btn btn-secondary" id="checkEmailButton1" type="button">이메일 중복 확인</button>
+					</div>
+					<div class="form-text" id="emailMessage1"></div>
+					
+					<label for="nickNameInput1" class="form-label">
+					닉네임
+					</label>
+					<div class="input-group">
+						<input id="nickNameInput1" class="form-control" type="text" name="nickName" /> 
+						<button class="btn btn-secondary" id="checkNickNameButton1" type="button">닉네임 중복 확인</button>
+					</div>
+					<div class="form-text" id="nickNameMessage1"></div>
+					
+					<button class="btn btn-primary" id="submitButton1" disabled>회원가입</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 </body>
