@@ -129,7 +129,11 @@ public class BoardService {
 	}
 
 	@Transactional
-	public boolean updateBoard(BoardDto dto, MultipartFile[] addFileList) {
+	public boolean updateBoard(BoardDto dto, List<String> removeFileList, MultipartFile[] addFileList) {
+		if (removeFileList != null) {
+			removeFiles(dto.getId(), removeFileList);
+		}
+		
 		if (addFileList != null) {
 			// File 테이블에 추가된 파일 insert
 			// s3에 upload
@@ -147,6 +151,15 @@ public class BoardService {
 		// 파일 목록 읽기
 		List<String> fileList = mapper.selectFileNameByBoard(id);
 		
+		removeFiles(id, fileList);
+		
+		// 댓글테이블 삭제
+		replyMapper.deleteByBoardId(id);
+		
+		return mapper.deleteBoard(id) == 1;
+	}
+
+	private void removeFiles(int id, List<String> fileList) {
 		// s3에서 지우기
 		for (String fileName : fileList) {
 			deleteFromAwsS3(id, fileName);
@@ -154,11 +167,6 @@ public class BoardService {
 		
 		// 파일테이블 삭제
 		mapper.deleteFileByBoardId(id);
-		
-		// 댓글테이블 삭제
-		replyMapper.deleteByBoardId(id);
-		
-		return mapper.deleteBoard(id) == 1;
 	}
 
 	private void deleteFromAwsS3(int id, String fileName) {
