@@ -3,6 +3,7 @@ package com.choong.spr.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,13 +123,14 @@ public class MemberController {
 	public String removeMember(MemberDto dto,
 			Principal principal,
 			HttpServletRequest req,
-			RedirectAttributes rttr) {
+			RedirectAttributes rttr) throws ServletException {
 		
 		if (hasAuthOrAdmin(dto.getId(), principal, req)) {
 			boolean success = service.removeMember(dto);
 			
 			if (success) {
 				rttr.addFlashAttribute("message", "회원 탈퇴 되었습니다.");
+				req.logout();
 				return "redirect:/board/list";
 			} else {
 				rttr.addAttribute("id", dto.getId());
